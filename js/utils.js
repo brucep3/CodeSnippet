@@ -26,6 +26,10 @@ function testProperty(property) {
     return false;
 }
 
+/**
+ * 通过隐层的元素检测是否支持某个具体的属性值
+ * @param property
+ */
 function testProperty(property) {
     var dummy = document.createElement("p");
     dummy.style.backgroundImage = "linear-gradient(red, tan)";
@@ -35,4 +39,22 @@ function testProperty(property) {
         root.classList.add("no-lineargradients");
     }
 }
+
+/**
+ * 浏览器可以解析某个CSS特性并不代表它已经实现（或正确实现）了这个特性。
+ * @param id
+ * @param value
+ * @param proerty
+ */
+function testValue(id, value, proerty) {
+    var dummy = document.createElement("p");
+    dummy.style[proerty] = value;
+    if (dummy.style[proerty]) {
+        root.classList.add(id);
+        return true;
+    }
+    root.classList.add("no-" + id);
+    return false;
+}
+
 
